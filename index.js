@@ -34,9 +34,9 @@ const UserSchema = new mongoose.Schema({
 const MovieData = mongoose.model("movie", UserSchema);
 
 
-app.get('/', (req, res) => {
-    return res.json({ status:200, message: "Server running at " + process.env.PORT })
-})
+// app.get('/', (req, res) => {
+//     return res.json({ status:200, message: "Server running at " + process.env.PORT })
+// })
 app.get("/movie", (req,res) => {
     MovieData.find({}).then(function(movie) {
         res.json(movie);
