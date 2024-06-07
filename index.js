@@ -39,18 +39,12 @@ const MovieData = mongoose.model("movie", UserSchema);
 // })
 app.get("/movie",async (req,res) => {
 
-    try{
-        const data = await MovieData.find();
-        res.json(data);
-    }
-    catch(error){
-        res.json({message:error.message})
-    }
-    // MovieData.find({}).then(function(movie) {
-    //     res.json(movie);
-    // }).catch(function(err) {
-    //     console.log(err);
-    // })
+  
+    MovieData.find({}).then(function(movie) {
+        res.json(movie);
+    }).catch(function(err) {
+        console.log(err);
+    })
 })
 
 app.post("/movie", async (req,res) => {
