@@ -2,17 +2,17 @@
 const express = require("express")
 const app = express()
 
-// const cors = require('cors')
-// const corsConfig = {
-//     origin:"*",
-//     Credential:true,
-//     methods:["GET", "POST", "PUT","DELETE"]
-// }
-// app.options("",cors(corsConfig))
-// app.use(cors(corsConfig))
+const cors = require('cors')
+const corsConfig = {
+    origin:"*",
+    Credential:true,
+    methods:["GET", "POST", "PUT","DELETE"]
+}
+app.options("",cors(corsConfig))
+app.use(cors(corsConfig))
 
 const mongoose = require("mongoose")
-// require('dotenv').config();
+require('dotenv').config();
 
 
 
@@ -34,15 +34,23 @@ const UserSchema = new mongoose.Schema({
 const MovieData = mongoose.model("movie", UserSchema);
 
 
-app.get('/', (req, res) => {
-    return res.json({ status:200, message: "Server running at " + process.env.PORT })
-})
-app.get("/movie", (req,res) => {
-    MovieData.find({}).then(function(movie) {
-        res.json(movie);
-    }).catch(function(err) {
-        console.log(err);
-    })
+// app.get('/', (req, res) => {
+//     return res.json({ status:200, message: "Server running at " + process.env.PORT })
+// })
+app.get("/movie",async (req,res) => {
+
+    try{
+        const data = await MovieData.find();
+        res.json(data);
+    }
+    catch(error){
+        res.json({message:error.message})
+    }
+    // MovieData.find({}).then(function(movie) {
+    //     res.json(movie);
+    // }).catch(function(err) {
+    //     console.log(err);
+    // })
 })
 
 app.post("/movie", async (req,res) => {
