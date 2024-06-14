@@ -53,6 +53,17 @@ app.get("/movie",async (req,res) => {
     }).catch(function(err) {
         console.log(err);
     })
+});
+
+app.get("/movie/:id", async(req, res) => {
+
+   let id = req.params.id;
+
+    MovieData.findById(id).then(function(movie) {
+        res.json(movie);
+    }).catch(function(err) {
+        console.log(err);
+    })
 })
 
 app.post("/movie", async (req,res) => {
