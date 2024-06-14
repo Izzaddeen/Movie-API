@@ -1,8 +1,14 @@
 
 const express = require("express")
 const app = express()
+const dotenv = require("dotenv");
 
 const cors = require('cors')
+
+
+
+dotenv.config();
+
 const corsConfig = {
     origin:"*",
     Credential:true,
@@ -127,6 +133,6 @@ app.delete("/deleteMovie/:id", async (req, res) => {
 // });
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
  console.log("server runs on 3000")
 })
