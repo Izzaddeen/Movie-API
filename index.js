@@ -19,7 +19,9 @@ require('dotenv').config();
 app.use(express.json());
 
 
-mongoose.connect('mongodb+srv://izza26:izzahafid2605@cluster0.5z4pmz7.mongodb.net/movieTickets')
+mongoose.connect(process.env.MONGODB_CONNECT_URL)
+.then(() => console.log("mongodb connected"))
+.catch((error) => console.log(error));
 
 const UserSchema = new mongoose.Schema({
     title: String,
