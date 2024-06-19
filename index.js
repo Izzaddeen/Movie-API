@@ -1,8 +1,6 @@
-
 const express = require("express")
 const app = express()
 const dotenv = require("dotenv");
-
 const cors = require('cors')
 
 
@@ -40,6 +38,10 @@ const UserSchema = new mongoose.Schema({
     id: Number,
 })
 const MovieData = mongoose.model("movie", UserSchema);
+
+
+
+
 
 app.get("/movie",async (req,res) => {
 
@@ -134,10 +136,6 @@ app.delete("/deleteMovie/:id", async (req, res) => {
     }
 });
 
-
-// app.listen(process.env.PORT || 3000, () => {
-//     console.log(`Server running on ${process.env.PORT || 3000}`);
-// });
 
 
 app.listen(process.env.PORT, () => {
